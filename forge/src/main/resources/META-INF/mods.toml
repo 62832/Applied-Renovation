@@ -1,0 +1,34 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"
+license = "LGPLv3.0"
+
+issueTrackerURL = "https://github.com/62832/Applied-Renovation/issues"
+displayURL = "https://github.com/62832/Applied-Renovation"
+
+[[mods]]
+modId = "appren"
+version = "${version}"
+displayName = "Applied Renovation"
+authors = "90"
+description = "Bespoke Macaw decor made from AE2's sky stone."
+
+[[dependencies.appren]]
+    modId = "ae2"
+    mandatory = true
+    versionRange = "[12.9.1,13.0.0)"
+    ordering = "AFTER"
+    side = "BOTH"
+
+[[dependencies.appren]]
+    modId = "forge"
+    mandatory = true
+    versionRange = "[43,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.appren]]
+    modId = "minecraft"
+    mandatory = true
+    versionRange = "[1.19.2,1.20)"
+    ordering = "NONE"
+    side = "BOTH"

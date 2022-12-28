@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "appren",
+  "version": "${version}",
+
+  "name": "Applied Renovation",
+  "description": "Bespoke Macaw decor made from AE2's sky stone.",
+  "authors": ["90"],
+  "contact": {
+    "sources": "https://github.com/62832/Applied-Renovation"
+  },
+  "icon": "icon.png",
+  "license": "LGPLv3.0",
+
+  "environment": "*",
+  "entrypoints": {
+    "ae2": ["gripe._90.appren.AppRenFabric"],
+    "ae2:client": ["gripe._90.appren.AppRenFabric<%='$'%>Client"],
+
+    "fabric-datagen": ["gripe._90.appren.datagen.FabricDataGenerators"]
+  },
+  "mixins": ["appren.mixins.json"],
+
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric-api": "*",
+    "minecraft": "~1.19",
+    "java": ">=17",
+    "ae2": ">=12.8.4"
+  }
+}

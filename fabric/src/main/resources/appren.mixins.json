@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "gripe._90.appren.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [],
+  "mixins": ["RoofTopNewAccessor"],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
