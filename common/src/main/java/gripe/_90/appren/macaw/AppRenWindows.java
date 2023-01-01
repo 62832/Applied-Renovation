@@ -38,7 +38,7 @@ public final class AppRenWindows {
                     case WINDOW2 -> new WindowBarred(BASE_PROPS.strength(0.6F, 1.2F));
                     case PARAPET -> new Parapet(BlockBehaviour.Properties.of(Material.DECORATION).strength(0.2F, 1.0F));
                     case LOUVERED_SHUTTER -> new Shutter(BASE_PROPS.strength(0.5F, 2.0F));
-                    default -> null;
+                    default -> throw new IllegalStateException();
                 }, stone, type));
             }
         }
