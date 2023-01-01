@@ -42,13 +42,9 @@ public final class PavingModelProvider extends FabricModelProvider {
 
             if (paving.decorType() == AppRenPavings.Type.DUMBLE)
                 variants = variants.with(PropertyDispatch.property(BlockStateProperties.HORIZONTAL_FACING)
-                        .generate(direction -> {
-                            var variant = Variant.variant();
-
-                            return (direction == Direction.NORTH || direction == Direction.SOUTH)
-                                    ? variant.with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
-                                    : variant;
-                        }));
+                        .generate(direction -> (direction == Direction.NORTH || direction == Direction.SOUTH)
+                                ? Variant.variant().with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
+                                : Variant.variant()));
 
             generator.blockStateOutput.accept(variants);
             generator.delegateItemModel(paving.block(), model);
