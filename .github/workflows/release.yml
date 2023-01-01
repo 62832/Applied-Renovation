@@ -29,7 +29,7 @@ jobs:
       - name: Upload release artifacts
         uses: softprops/action-gh-release@v1
         with:
-          files:
+          files: |
             'build/libs/appren-fabric-*.jar'
             'build/libs/appren-forge-*.jar'
           tag_name: ${{ github.event.release.tag_name }}
