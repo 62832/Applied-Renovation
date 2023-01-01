@@ -26,11 +26,7 @@ import appeng.core.AppEng;
 import gripe._90.appren.macaw.AppRenRoofs;
 import gripe._90.appren.mixin.RoofTopNewAccessor;
 
-public final class RoofModelProvider extends FabricModelProvider {
-    public RoofModelProvider(FabricDataGenerator gen) {
-        super(gen);
-    }
-
+public final class RoofModelProvider extends AppRenModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators generator) {
         AppRenRoofs.get().forEach(roof -> {
@@ -214,13 +210,5 @@ public final class RoofModelProvider extends FabricModelProvider {
                 }
             }
         });
-    }
-
-    @Override
-    public void generateItemModels(ItemModelGenerators generator) {
-    }
-
-    private ModelTemplate model(String parent, TextureSlot... textures) {
-        return new ModelTemplate(Optional.of(new ResourceLocation(parent)), Optional.empty(), textures);
     }
 }

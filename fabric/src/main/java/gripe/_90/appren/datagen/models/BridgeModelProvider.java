@@ -39,11 +39,7 @@ import appeng.core.AppEng;
 import gripe._90.appren.core.DecorDefinition;
 import gripe._90.appren.macaw.AppRenBridges;
 
-public final class BridgeModelProvider extends FabricModelProvider {
-    public BridgeModelProvider(FabricDataGenerator gen) {
-        super(gen);
-    }
-
+public final class BridgeModelProvider extends AppRenModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators generator) {
         AppRenBridges.get().forEach(bridge -> {
@@ -313,10 +309,6 @@ public final class BridgeModelProvider extends FabricModelProvider {
         });
     }
 
-    @Override
-    public void generateItemModels(ItemModelGenerators generator) {
-    }
-
     private ResourceLocation bridgeModel(BlockModelGenerators gen, DecorDefinition<?, AppRenBridges.Type> bridge,
             String part, boolean withTorch) {
         var stone = AppEng.makeId("block/" + bridge.stoneType().block().id().getPath());
@@ -460,9 +452,5 @@ public final class BridgeModelProvider extends FabricModelProvider {
         public interface VariantFunction {
             Variant apply(Direction dir, boolean N, boolean E, boolean S, boolean W, boolean tch);
         }
-    }
-
-    private ModelTemplate model(String parent, TextureSlot... textures) {
-        return new ModelTemplate(Optional.of(new ResourceLocation(parent)), Optional.empty(), textures);
     }
 }

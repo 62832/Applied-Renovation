@@ -31,11 +31,7 @@ import appeng.core.AppEng;
 import gripe._90.appren.core.DecorDefinition;
 import gripe._90.appren.macaw.AppRenWindows;
 
-public final class WindowModelProvider extends FabricModelProvider {
-    public WindowModelProvider(FabricDataGenerator gen) {
-        super(gen);
-    }
-
+public final class WindowModelProvider extends AppRenModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators generator) {
         AppRenWindows.get().forEach(window -> {
@@ -323,13 +319,5 @@ public final class WindowModelProvider extends FabricModelProvider {
                 makeId("block/window/" + window.id().getPath() + "_" + part),
                 new TextureMapping().put(_0, stone).put(_1, glass).put(TextureSlot.PARTICLE, stone),
                 gen.modelOutput);
-    }
-
-    @Override
-    public void generateItemModels(ItemModelGenerators generator) {
-    }
-
-    private ModelTemplate model(String parent, TextureSlot... textures) {
-        return new ModelTemplate(Optional.of(new ResourceLocation(parent)), Optional.empty(), textures);
     }
 }

@@ -21,11 +21,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 import gripe._90.appren.macaw.AppRenPavings;
 
-public final class PavingModelProvider extends FabricModelProvider {
-    public PavingModelProvider(FabricDataGenerator gen) {
-        super(gen);
-    }
-
+public final class PavingModelProvider extends AppRenModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators generator) {
         AppRenPavings.get().forEach(paving -> {
@@ -49,13 +45,5 @@ public final class PavingModelProvider extends FabricModelProvider {
             generator.blockStateOutput.accept(variants);
             generator.delegateItemModel(paving.block(), model);
         });
-    }
-
-    @Override
-    public void generateItemModels(ItemModelGenerators generator) {
-    }
-
-    private ModelTemplate model(String parent, TextureSlot... textures) {
-        return new ModelTemplate(Optional.of(new ResourceLocation(parent)), Optional.empty(), textures);
     }
 }

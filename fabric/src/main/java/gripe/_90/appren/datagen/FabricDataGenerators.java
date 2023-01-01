@@ -10,12 +10,16 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
+import gripe._90.appren.datagen.models.AppRenModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+import net.minecraft.data.models.BlockModelGenerators;
+import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
@@ -49,12 +53,7 @@ import gripe._90.appren.macaw.AppRenWindows;
 public class FabricDataGenerators implements DataGeneratorEntrypoint {
     @Override
     public void onInitializeDataGenerator(FabricDataGenerator generator) {
-        generator.addProvider(BridgeModelProvider::new);
-        generator.addProvider(WindowModelProvider::new);
-        generator.addProvider(PavingModelProvider::new);
-        generator.addProvider(WallModelProvider::new);
-        generator.addProvider(RoofModelProvider::new);
-
+        generator.addProvider(ModelProvider::new);
         generator.addProvider(RecipeProvider::new);
         generator.addProvider(DropProvider::new);
         generator.addProvider(TagProvider.Blocks::new);
@@ -62,6 +61,29 @@ public class FabricDataGenerators implements DataGeneratorEntrypoint {
 
         for (var en : List.of("en_us", "en_gb", "en_ca", "en_au", "en_nz")) {
             generator.addProvider(new LangProvider(generator, en));
+        }
+    }
+
+    private static final class ModelProvider extends FabricModelProvider {
+        private final List<AppRenModelProvider> providers = List.of(
+                new BridgeModelProvider(),
+                new WindowModelProvider(),
+                new PavingModelProvider(),
+                new WallModelProvider(),
+                new RoofModelProvider());
+
+        public ModelProvider(FabricDataGenerator gen) {
+            super(gen);
+        }
+
+        @Override
+        public void generateBlockStateModels(BlockModelGenerators generator) {
+            providers.forEach(p -> p.generateBlockStateModels(generator));
+        }
+
+        @Override
+        public void generateItemModels(ItemModelGenerators generator) {
+            providers.forEach(p -> p.generateItemModels(generator));
         }
     }
 

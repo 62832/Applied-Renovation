@@ -17,7 +17,7 @@ loom {
             property("fabric-api.datagen")
             property("fabric-api.datagen.modid", rootProject.property("mod_id").toString())
             property("fabric-api.datagen.output-dir", file("src/generated/resources").absolutePath)
-            // property("fabric-api.datagen.strict-validation")
+            property("fabric-api.datagen.strict-validation")
         }
     }
 }

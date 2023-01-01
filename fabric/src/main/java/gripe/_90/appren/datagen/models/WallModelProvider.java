@@ -30,11 +30,7 @@ import gripe._90.appren.core.DecorDefinition;
 import gripe._90.appren.core.SkyStoneType;
 import gripe._90.appren.macaw.AppRenWalls;
 
-public final class WallModelProvider extends FabricModelProvider {
-    public WallModelProvider(FabricDataGenerator gen) {
-        super(gen);
-    }
-
+public final class WallModelProvider extends AppRenModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators generator) {
         AppRenWalls.get().forEach(wall -> {
@@ -170,9 +166,5 @@ public final class WallModelProvider extends FabricModelProvider {
                         .with(VariantProperties.MODEL, side)
                         .with(VariantProperties.Y_ROT, VariantProperties.Rotation.R270)
                         .with(VariantProperties.UV_LOCK, false)));
-    }
-
-    private ModelTemplate model(String parent, TextureSlot... textures) {
-        return new ModelTemplate(Optional.of(new ResourceLocation(parent)), Optional.empty(), textures);
     }
 }
